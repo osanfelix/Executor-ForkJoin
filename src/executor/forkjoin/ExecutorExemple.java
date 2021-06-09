@@ -149,14 +149,14 @@ public class ExecutorExemple
         }
 		
 		
-		ThreadPoolExecutor threadExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
-		//~ThreadPoolExecutor threadExecutor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+		ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
+		//~ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
 		List<Future<String[]>> responseList = null;
 		try {
-			responseList = threadExecutor.invokeAll(tasks);
-			threadExecutor.shutdown();
-			threadExecutor.awaitTermination(60, TimeUnit.SECONDS);
+			responseList = pool.invokeAll(tasks);
+			pool.shutdown();
+			//~pool.awaitTermination(5, TimeUnit.SECONDS);
 			
 		} catch (InterruptedException ex) {
 			Logger.getLogger(ExecutorForkJoin.class.getName()).log(Level.SEVERE, null, ex);
