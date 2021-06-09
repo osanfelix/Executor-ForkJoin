@@ -151,12 +151,12 @@ public class ExecutorExemple
 		
 		ThreadPoolExecutor threadExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
 		//~ThreadPoolExecutor threadExecutor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
-		
+
 		List<Future<String[]>> responseList = null;
 		try {
 			responseList = threadExecutor.invokeAll(tasks);
 			threadExecutor.shutdown();
-			threadExecutor.awaitTermination(5, TimeUnit.SECONDS);
+			threadExecutor.awaitTermination(60, TimeUnit.SECONDS);
 			
 		} catch (InterruptedException ex) {
 			Logger.getLogger(ExecutorForkJoin.class.getName()).log(Level.SEVERE, null, ex);
@@ -166,6 +166,8 @@ public class ExecutorExemple
 		if(responseList == null)	return;
 		for (int i = 0; i < tasks.size(); i++)
 		{
+			// 'get' method waits for the thread to finish de task. There is no need
+			// to check finish with 'isDone'
             Future<String[]> resultat = responseList.get(i);
             try {
 				for(String s : resultat.get())
