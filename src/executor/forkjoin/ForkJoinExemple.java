@@ -26,8 +26,8 @@ public class ForkJoinExemple extends RecursiveAction
 	private final int firstLine;
 	private final int lastLine;
 	
-	static final int LINES = 50;		// 50 lines per task maximun
-	static final int OFFSET = 24;		// average of 24 pixels, even.
+	static final int LINES = 200;		// 50 lines per task maximun
+	static final int OFFSET = 30;		// average of 24 pixels, even.
 	// scr: 
 	public ForkJoinExemple(BufferedImage src, int lineFrom, int lineTo)
 	{
@@ -135,7 +135,7 @@ public class ForkJoinExemple extends RecursiveAction
 			
 			ForkJoinPool pool = new ForkJoinPool();		// max threads (4 in my i3 core)
 			//~ForkJoinPool pool = new ForkJoinPool(1);	// 1 thread
-			//~ForkJoinPool pool = new ForkJoinPool(4);	// 2 threads
+			//~ForkJoinPool pool = new ForkJoinPool(2);	// 2 threads
 			
 			ForkJoinExemple task = new ForkJoinExemple(src, 0, src.getWidth());
 			pool.invoke(task);

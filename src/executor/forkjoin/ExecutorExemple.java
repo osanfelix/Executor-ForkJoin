@@ -71,6 +71,7 @@ class CodeSearchTask implements Callable<String[]>
 					codes.add(map[1]);
 			}
 			
+			System.out.println("Procesed file:" + file + " by " + Thread.currentThread().getName() );
 			return codes.toArray(new String[codes.size()]);
 		} catch (FileNotFoundException ex) {
 			System.err.println("Fitxer \""+ file + "\" no trobat: "+ ex);
